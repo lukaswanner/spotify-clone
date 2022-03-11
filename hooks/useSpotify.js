@@ -7,10 +7,14 @@ function useSpotify() {
 
   useEffect(() => {
     if (session !== undefined) {
-      if (session.error === 'RefreshAccessTokenError') {
+      if (
+        session.error === 'RefreshAccessTokenError' ||
+        new Date(session.expires).valueOf() < Date.now()
+      ) {
         signIn()
+      } else {
+        spotifyApi.setAccessToken(session.user.accessToken)
       }
-      spotifyApi.setAccessToken(session.user.accessToken)
     }
   }, [session])
 

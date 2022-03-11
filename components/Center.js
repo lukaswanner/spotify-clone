@@ -3,7 +3,7 @@ import { ChevronDownIcon } from '@heroicons/react/outline'
 import { useEffect, useState } from 'react'
 import { shuffle } from 'lodash'
 import { useRecoilValue, useRecoilState } from 'recoil'
-import { playlistIdState, playlistState} from '../atoms/playlistAtom'
+import { playlistIdState, playlistState } from '../atoms/playlistAtom'
 import useSpotify from '../hooks/useSpotify'
 import Songs from './Songs'
 
@@ -37,7 +37,6 @@ export default function Center() {
       .catch((error) => console.log('Something went wrong!', error))
   }, [spotifyApi, playlistId])
 
-  console.log('current playlist:', playlist)
   return (
     <div className="h-screen flex-grow overflow-y-scroll scrollbar-hide">
       <header className="absolute top-5 right-8">
@@ -48,7 +47,7 @@ export default function Center() {
           <img
             className="h-10 w-10 rounded-full "
             //hier noch standard img hinzufügen
-            src={session?.user.image}
+            src={session?.user.image || 'https://placekitten.com/100/100'}
             alt="user profile img"
           />
           <h2>{session?.user.name}</h2>
@@ -66,9 +65,7 @@ export default function Center() {
         />
         <div>
           <p>PLAYLIST</p>
-          <h2 className="text-2xl font-bold md:text-3xl xl:text-5xl">
-            {playlist?.name}
-          </h2>
+          <h2 className="text-2xl font-bold md:text-3xl xl:text-5xl">{playlist?.name}</h2>
         </div>
       </section>
 

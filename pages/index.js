@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Sidebar from '../components/Sidebar'
 import Center from '../components/Center'
+import Player from '../components/Player'
 import { getSession } from 'next-auth/react'
 const Home = () => {
   return (
@@ -15,12 +16,14 @@ const Home = () => {
           <Center />
         </main>
       </div>
-      <div> {/* PLAYER */}</div>
+      <div className="sticky bottom-0">
+        <Player />
+      </div>
     </>
   )
 }
 
-//2:26:09
+//3:05:56
 
 export const getServerSideProps = async (context) => {
   const session = await getSession(context)
