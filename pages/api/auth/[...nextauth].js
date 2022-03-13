@@ -55,7 +55,6 @@ export default NextAuth({
       }
       // access token has expired and refresh token is available
       const refreshedToken = await refreshAccessToken(token)
-      console.log('refreshedToken: ', refreshedToken)
       return refreshedToken
     },
 

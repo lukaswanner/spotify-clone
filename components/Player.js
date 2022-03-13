@@ -28,7 +28,6 @@ function Player() {
   const fetchCurrentSong = async () => {
     if (!songInfo) {
       const playingTrack = await spotifyApi.getMyCurrentPlayingTrack()
-      console.log('Now Playing: ', playingTrack.body?.item?.name)
       setCurrentTrackId(playingTrack.body?.item?.id)
       const playingState = await spotifyApi.getMyCurrentPlaybackState()
       setIsPlaying(playingState.body?.is_playing)
@@ -47,7 +46,7 @@ function Player() {
   }
 
   const getDeviceActive = async () => {
-    const active = (await (await spotifyApi.getMyDevices()).body.devices.length) > 0
+    const active = (await spotifyApi.getMyDevices()).body.devices.length > 0
     return active
   }
 
@@ -67,7 +66,11 @@ function Player() {
   const debounceAdjustVolume = useCallback(
     debounce(async (volume) => {
       if (await getDeviceActive()) {
-        spotifyApi.setVolume(volume)
+        try {
+          await spotifyApi.setVolume(volume)
+        } catch (error) {
+          console.error('Cant set volume on your device')
+        }
       }
     }, 500),
     []

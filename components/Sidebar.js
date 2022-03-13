@@ -29,7 +29,7 @@ function Sidebar() {
   return (
     <div className="hidden h-screen overflow-y-scroll border-r border-gray-900 p-5 pb-[2.25rem] text-xs text-gray-500 scrollbar-hide sm:max-w-[12rem] md:inline-flex lg:max-w-[15rem] lg:text-sm">
       <div className="space-y-4">
-        <button className="flex items-center space-x-2 hover:text-white">
+        {/* <button className="flex items-center space-x-2 hover:text-white">
           <HomeIcon className="h-5 w-5" />
 
           <p>Home</p>
@@ -56,7 +56,7 @@ function Sidebar() {
           <RssIcon className="h-5 w-5" />
           <p>Your episodes</p>
         </button>
-        <hr className="border-t-[0.1px] border-gray-900" />
+        <hr className="border-t-[0.1px] border-gray-900" /> */}
 
         {/* Playlists */}
         {playlists.map((playlist) => (
